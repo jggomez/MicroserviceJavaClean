@@ -4,14 +4,12 @@ import co.devhack.courses.usecase.course.AddCourseUseCase;
 import co.devhack.courses.usecase.course.GetAllCourseUseCase;
 import co.devhack.courses.usecase.domain.Course;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController()
+@RequestMapping("/apis/v1")
 public class CourseEndpoint {
 
     @Autowired
@@ -20,7 +18,7 @@ public class CourseEndpoint {
     @Autowired
     AddCourseUseCase addCourseUseCase;
 
-    @RequestMapping(value = "/apis/v1/course", method = RequestMethod.POST)
+    @PostMapping(value = "/course")
     public String add(@RequestBody Course course) {
         try {
             addCourseUseCase.setCourse(course);
@@ -31,7 +29,7 @@ public class CourseEndpoint {
         }
     }
 
-    @RequestMapping(value = "/apis/v1/course", method = RequestMethod.GET)
+    @GetMapping(value = "/course")
     public List<Course> getAll() {
         try {
             return getAllCourseUseCase.execute();

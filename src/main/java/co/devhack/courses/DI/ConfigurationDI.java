@@ -21,7 +21,7 @@ public class ConfigurationDI {
 
         try {
             FileInputStream serviceAccount =
-                    new FileInputStream("./serviceAccountKey.json");
+                    new FileInputStream("WEB-INF/classes/serviceAccountKey.json");
 
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
